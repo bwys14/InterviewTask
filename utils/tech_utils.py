@@ -7,31 +7,38 @@ from logging.handlers import RotatingFileHandler
 from os.path import join as path_join
 
 
-def read_df(dataset_path: str, spark_session: SparkSession) -> DataFrame:
+def read_df(dataset_path: str, spark_session: SparkSession, log: logging.Logger) -> DataFrame:
     """
     This function reads csv dataset from provided path using provided spark_session instance
     :param dataset_path: str, the path from which csv should be read
     :param spark_session: SparkSession, determines spark session to use for reading the data
+    :param log: Logger, provide Logger object to be used for steps logging
     :return: DataFrame, containing data included in csv stated as source
     """
+    log.info(f'Reading dataset from path {dataset_path}')
     return spark_session.read.format('csv').option('header', 'true').load(dataset_path)
 
 
-def save_output(input_df: DataFrame):
+def save_output(input_df: DataFrame, log: logging.Logger):
     """
     This function saves output DataFrame as csv file in client_data directory under project root
     :param input_df: DataFrame, dataframe to be saved as csv
+    :param log: Logger, provide Logger object to be used for steps logging
     """
+    log.info('Creating output path')
     output_path = path_join(ROOT_DIR, 'client_data', 'output' + strftime("%Y%m%d_%H%M%S"))
-    print(output_path)
+    log.info(f'Saving output to {output_path}')
     input_df.write.option('header', 'true').format('csv').mode('overwrite').save(output_path)
 
 
-def parse_args() -> Namespace:
+def parse_args(log: logging.Logger) -> Namespace:
     """
     The function parses the input arguments
+    log.info(f'Creating output path')
     :return: Namespace, argparse object with parsed arguments
     """
+
+    log.info('Parsing arguments')
     parser = ArgumentParser()
     parser.add_argument('-cds', '--customers_data_path', type=str, required=True,
                         help='Path to file with customers data')
@@ -46,10 +53,18 @@ def parse_args() -> Namespace:
     return parsed_args
 
 
-def init_logg(log_path='logs/applog.log', log_size=2500,
-                       log_format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-                       log_time_format='%Y-%m-%d %H:%M:%S') -> RotatingFileHandler:
-    logger = logging.getLogger('log_operations')
+def init_logg(log_path: str = 'logs/applog.log', log_size: int = 3000,
+                       log_format: str = '%(asctime)s - %(levelname)s - %(message)s',
+                       log_time_format='%Y-%m-%d %H:%M:%S') -> logging.Logger:
+    """
+    This function generates logger object to be used for processing control and debug
+    :param log_path: str, the path (up to filename) where log will be stored
+    :param log_size: int, maximum number of bytes stored in a log
+    :param log_format: str, the general  format of log entry
+    :param log_time_format: str, the format of timestamp in log entry
+    :return: Logger, object used for logging the processing steps
+    """
+    logger = logging.getLogger('log_steps')
 
     logger.setLevel(logging.INFO)
 
