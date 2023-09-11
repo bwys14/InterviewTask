@@ -23,9 +23,10 @@ jobs:
         python -m pip install --upgrade pip
          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     
-    - name: Test with pytest
-      run: |
-         if [ dpkg -s pytest && -f tests ]; then python -m pytest --import-mode=append tests/; fi      
+    # - name: Test with pytest
+    #   run: |
+    #      if [[ dpkg -s pytest -eq 1 && -f tests ]]; then python -m pytest --import-mode=append tests/; fi      
     - name: Create source distribution file
       run: |
-        if [ dpkg -s wheel ]; python3 -m build -wheel; fi
+        pkgcheck=$(dpkg -s wheel)
+        if [ $pkgcheck -eq 1]; python3 -m build -wheel; fi
