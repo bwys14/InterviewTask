@@ -1,2 +1,2 @@
 import pytest
-assert true
+assert True
