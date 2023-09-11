@@ -1,8 +1,10 @@
 from argparse import ArgumentParser, Namespace
-from pyspark.sql import DataFrame, SparkSession
-from os.path import join as path_join
 from config.definitions import ROOT_DIR
+from pyspark.sql import DataFrame, SparkSession
 from time import strftime
+import logging
+from logging.handlers import RotatingFileHandler
+from os.path import join as path_join
 
 
 def read_df(dataset_path: str, spark_session: SparkSession) -> DataFrame:
@@ -42,3 +44,22 @@ def parse_args() -> Namespace:
                         help='Provides column-filtering values mapping')
     parsed_args = parser.parse_args()
     return parsed_args
+
+
+def init_logg(log_path='logs/applog.log', log_size=2500,
+                       log_format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+                       log_time_format='%Y-%m-%d %H:%M:%S') -> RotatingFileHandler:
+    logger = logging.getLogger('log_operations')
+
+    logger.setLevel(logging.INFO)
+
+    handler = RotatingFileHandler(log_path, maxBytes=log_size, backupCount=10)
+    handler.setLevel(logging.INFO)
+
+    formatter = logging.Formatter(log_format, log_time_format)
+
+    handler.setFormatter(formatter)
+
+    logger.addHandler(handler)
+
+    return logger
