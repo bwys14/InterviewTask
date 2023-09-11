@@ -30,4 +30,4 @@ jobs:
     
     - name: Create source distribution file
       run: |
-        python3 -m build -wheel
+        python3 setup.py bdist_wheel
