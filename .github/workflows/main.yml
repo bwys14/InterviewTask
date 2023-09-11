@@ -25,7 +25,7 @@ jobs:
     
     - name: Test with pytest
       run: |
-         if [ -f requirements.txt && -f tests ]; then python -m pytest --import-mode=append tests/; fi      
+         if [ dpkg -s pytest && -f tests ]; then python -m pytest --import-mode=append tests/; fi      
     - name: Create source distribution file
       run: |
-        if [ -f requirements.txt ]; python3 -m build -wheel; fi
+        if [ dpkg -s wheel ]; python3 -m build -wheel; fi
