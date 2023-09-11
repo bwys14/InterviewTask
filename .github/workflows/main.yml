@@ -22,9 +22,10 @@ jobs:
       run: |
         python -m pip install --upgrade pip
          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    # - name: Test with pytest
-    #   run: |
-    #     python -m pytest --import-mode=append tests/         
+    
+    - name: Test with pytest
+      run: |
+         if [ -f requirements.txt && -f tests ]; then python -m pytest --import-mode=append tests/; fi      
     - name: Create source distribution file
       run: |
-        python3 -m build -wheel
+        if [ -f requirements.txt ]; python3 -m build -wheel; fi
