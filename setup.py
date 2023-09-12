@@ -4,7 +4,7 @@ rqs_file = open("requirements.txt", "r")
 rq = rqs_file.read().split("\n")
 rqs_file.close()
 
- setup(
+setup(
    name='KP-DataProcessing',
    version='1.0.0',
    author='Beata Wysocka',
