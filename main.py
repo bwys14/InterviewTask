@@ -14,15 +14,13 @@ if __name__ == "__main__":
     customers_df = read_df(args.customers_data_path, spark_sess, logg)
 
     logg.info('Dropping personal info from customers data')
-    customers_df.drop('firstname', 'lastname')
+    customers_df = customers_df.drop('first_name', 'last_name')
     logg.info('Dropping personal info from finance data')
-    finance_df.drop('cc_n')
+    finance_df = finance_df.drop('cc_n')
 
     logg.info('Joining customer and finance data')
     joined_data = customers_df.join(finance_df, 'id', 'inner')
 
-    print(args.filter_dict)
-    print(args.rename_dict)
     joined_data = df_filter(joined_data, loads(args.filter_dict), logg)
 
     output = df_rename_columns(joined_data, loads(args.rename_dict), logg)

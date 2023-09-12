@@ -24,10 +24,10 @@ jobs:
         pip install -r requirements.txt
         pip install setuptools
          
-    # - name: Test with pytest
-    #   run: |
-    #     export PYTHONPATH=$(echo `pwd`)
-    #     pytest  
+    - name: Test with pytest
+      run: |
+        export PYTHONPATH=$(echo `pwd`)
+        pytest  
     
     - name: Create source distribution file
       run: |
