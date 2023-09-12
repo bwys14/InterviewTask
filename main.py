@@ -1,3 +1,4 @@
+from json import loads
 from utils.business_logic import df_filter, df_rename_columns
 from utils.tech_utils import parse_args, read_df, save_output, init_logg
 from pyspark.sql import SparkSession
@@ -20,8 +21,10 @@ if __name__ == "__main__":
     logg.info('Joining customer and finance data')
     joined_data = customers_df.join(finance_df, 'id', 'inner')
 
-    joined_data = df_filter(joined_data, args.cust_filter_dict, logg)
+    print(args.filter_dict)
+    print(args.rename_dict)
+    joined_data = df_filter(joined_data, loads(args.filter_dict), logg)
 
-    output = df_rename_columns(joined_data, args.rename_dict, logg)
+    output = df_rename_columns(joined_data, loads(args.rename_dict), logg)
 
     save_output(output, logg)
