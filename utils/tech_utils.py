@@ -43,11 +43,11 @@ def parse_args(log: logging.Logger) -> Namespace:
     parser.add_argument('-cds', '--customers_data_path', type=str, required=True,
                         help='Path to file with customers data')
     parser.add_argument('-fds', '--finance_data_path', type=str, required=True, help='Path to file with finance data')
-    parser.add_argument('-rdict', '--rename_dict', type=dict, required=False,
-                        default={'id': 'client_identifier', 'btc_a': 'bitcoin_address', 'cc_t': 'credit_card_type'},
+    parser.add_argument('-rdict', '--rename_dict', type=str, required=False,
+                        default='{"id": "client_identifier", "btc_a": "bitcoin_address", "cc_t": "credit_card_type"}',
                         help='Provides old column name - new column name mapping')
-    parser.add_argument('-cdict', '--cust_filter_dict', type=dict, required=False,
-                        default={'country': ['Netherlands', 'United Kingdom']},
+    parser.add_argument('-fdict', '--filter_dict', type=str, required=False,
+                        default='{"country": ["Netherlands", "United Kingdom"]}',
                         help='Provides column-filtering values mapping')
     parsed_args = parser.parse_args()
     return parsed_args
