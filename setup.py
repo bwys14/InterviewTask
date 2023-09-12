@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 rqs_file = open("requirements.txt", "r")
 rq = rqs_file.read().split("\n")
