@@ -20,8 +20,9 @@ jobs:
         
     - name: Install dependencies
       run: |
-        sudo apt install python3-pip
-        pip3 install -r requirements.txt
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install setuptools
          
     # - name: Test with pytest
     #   run: |
