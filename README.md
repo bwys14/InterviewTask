@@ -1,4 +1,3 @@
-
 # KP-DataProcessing
 
 ## Description
@@ -19,8 +18,8 @@ This package provides the functionality required by very small company called **
 | id | first_name | last_name | email | country |
 -- finance_data:
 | id | btc_a | cc_t | cc_n |
-- Dictionary used for columns renaming step (-rdict) can include columns from both datasets as it\"s applied to joined data.
-- Dictionary used for filtering can include (-fdict) can include filter criteria for any column from any dataset as it\"s also applied to already joined data.
+- Json string used for columns renaming step (-rdict) can include columns from both datasets as it\"s applied to joined data.
+- Json string used for filtering can include (-fdict) can include filter criteria for any column from any dataset as it\"s also applied to already joined data.
 
 ## Output
 The output is saved in client_data directory, in folder corresponding to process execution time. Output file contains joined customer and finance data, without some PII data (first_name, last_name, credit card number [cc_n]). The data is filtered as specified by -fdict parameter and columns are named as specified by -rdict parameter. In default case, output contains only data for customers from Netherland and United Kingdom and the output columns are as per below:
