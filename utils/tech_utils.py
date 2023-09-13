@@ -1,10 +1,12 @@
-from argparse import ArgumentParser, Namespace
-from config.definitions import ROOT_DIR
 import logging
+from argparse import ArgumentParser, Namespace
 from logging.handlers import RotatingFileHandler
 from os.path import join as path_join
-from pyspark.sql import DataFrame, SparkSession
 from time import strftime
+
+from pyspark.sql import DataFrame, SparkSession
+
+from config.definitions import ROOT_DIR
 
 
 def read_df(dataset_path: str, spark_session: SparkSession, log: logging.Logger) -> DataFrame:
@@ -54,8 +56,8 @@ def parse_args(log: logging.Logger) -> Namespace:
 
 
 def init_logg(log_path: str = 'logs/applog.log', log_size: int = 3000,
-                       log_format: str = '%(asctime)s - %(levelname)s - %(message)s',
-                       log_time_format='%Y-%m-%d %H:%M:%S') -> logging.Logger:
+              log_format: str = '%(asctime)s - %(levelname)s - %(message)s',
+              log_time_format='%Y-%m-%d %H:%M:%S') -> logging.Logger:
     """
     This function generates logger object to be used for processing control and debug
     :param log_path: str, the path (up to filename) where log will be stored
