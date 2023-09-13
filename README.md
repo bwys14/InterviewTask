@@ -7,9 +7,9 @@ This package provides the functionality required by very small company called **
 (mandatory, no default value)
 - -fds / --finance_data_path - path to dataset with finance data
 (mandatory, no default value)
-- -rdict / --rename_dict - json string defining mapping between the column to be filtered and values to be used for filtering
+- -rdict / --rename_dict - json string defining mapping between the column to be filtered and values to be used for filtering\
 (optional, default value: '{\"id\": \"client_identifier\", \"btc_a\": \"bitcoin_address\", \"cc_t\": \"credit_card_type\"}')
-- -fdict / --filter_dict - json string defining mapping between old column name and new column name to be used in final output
+- -fdict / --filter_dict - json string defining mapping between old column name and new column name to be used in final output\
 (optional, default value: '{\"country\": [\"Netherlands\", \"United Kingdom\"]}')
 
 ## Input usage hints
