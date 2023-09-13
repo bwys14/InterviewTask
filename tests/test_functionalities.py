@@ -1,7 +1,7 @@
 from chispa.dataframe_comparer import assert_df_equality
-from logging import Logger, getLogger
+from logging import getLogger, Logger
+from pyspark.sql import DataFrame, SparkSession
 from pytest import fixture
-from pyspark.sql import SparkSession, DataFrame
 from utils.business_logic import df_filter, df_rename_columns
 
 
