@@ -32,9 +32,9 @@ The output is saved in client_data directory, in folder corresponding to process
 python main.py -cds "./datasets/dataset_one.csv" --fds "./datasets/dataset_two.csv"
 ```
 
-### Usecase - as required in task description (3 parameters: two datasets paths and country filter)
+### Usecase - options required in task description (accept 3 parameters: two datasets paths and country filter)
 ```
-python main.py -cds "./datasets/dataset_one.csv" -fds "./datasets/dataset_two.csv" -fdict "{\"country\": [\"France\", \"United States\"]}
+python main.py -cds "./datasets/dataset_one.csv" -fds "./datasets/dataset_two.csv" -fdict "{\"country\": [\"France\", \"United Kingdom\"]}
 ```
 
 ### Usecase - complex, employing all customizable options
