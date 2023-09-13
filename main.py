@@ -1,10 +1,11 @@
 from json import loads
+
 from pyspark.sql import SparkSession
+
 from utils.business_logic import df_filter, df_rename_columns
 from utils.tech_utils import parse_args, read_df, save_output, init_logg
 
 if __name__ == "__main__":
-    
     logg = init_logg()
 
     logg.info('Initializing Spark session')
