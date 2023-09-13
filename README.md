@@ -34,7 +34,7 @@ python main.py -cds "./datasets/dataset_one.csv" --fds "./datasets/dataset_two.c
 
 ### Usecase - options required in task description (accept 3 parameters: two datasets paths and country filter)
 ```
-python main.py -cds "./datasets/dataset_one.csv" -fds "./datasets/dataset_two.csv" -fdict "{\"country\": [\"France\", \"United Kingdom\"]}
+python main.py -cds "./datasets/dataset_one.csv" -fds "./datasets/dataset_two.csv" -fdict "{\"country\": [\"France\", \"United Kingdom\"]}"
 ```
 
 ### Usecase - complex, employing all customizable options
