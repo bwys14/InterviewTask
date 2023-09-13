@@ -1,15 +1,15 @@
 # KP-DataProcessing
 
 ## Description
-This package provides the functionality required by very small company called **KommatiPara** that deals with bitcoin trading. The basic aim of processing steps is to join information from two separate datasets: one containing clients data and the other one containing their financial details. Additionally, personal data is excluded  (except from clients\" e-mails), output is filtered as per chosen criteria and columns are renamed to make the output more user-friendly.
+This package provides the functionality required by very small company called **KommatiPara** that deals with bitcoin trading. The basic aim of processing steps is to join information from two separate datasets: one containing clients data and the other one containing their financial details. Additionally, personal data is excluded  (except from clients\' e-mails), output is filtered as per chosen criteria and columns are renamed to make the output more user-friendly.
 ## Input parameters
 - -cds / --customers_data_path - path to dataset with customer data
 (mandatory, no default value)
 - -fds / --finance_data_path - path to dataset with finance data
 (mandatory, no default value)
-- -rdict / --rename_dict - json string defining mapping between the column to be filtered and values to be used for filtering
+- -rdict / --rename_dict - json string defining mapping between the column to be filtered and values to be used for filtering\
 (optional, default value: '{\"id\": \"client_identifier\", \"btc_a\": \"bitcoin_address\", \"cc_t\": \"credit_card_type\"}')
-- -fdict / --filter_dict - json string defining mapping between old column name and new column name to be used in final output
+- -fdict / --filter_dict - json string defining mapping between column and values to be considered for filtering\
 (optional, default value: '{\"country\": [\"Netherlands\", \"United Kingdom\"]}')
 
 ## Input usage hints
@@ -27,12 +27,17 @@ The output is saved in client_data directory, in folder corresponding to process
 
 
 ## Examples:
+### Usecase - default settings
 ```
-#default settings
-KP-DataProcessing -cds "./datasets/dataset_one.csv" --fds "./datasets/dataset_two.csv"
+python main.py -cds "./datasets/dataset_one.csv" --fds "./datasets/dataset_two.csv"
 ```
 
+### Usecase - options required in task description (accept 3 parameters: two datasets paths and country filter)
 ```
-#more complex case
-KP-DataProcessing -cds "./datasets/dataset_one.csv" -fds "./datasets/dataset_two.csv" -fdict "{\"country\": [\"France\", \"United States\"], \"cc_t\": [\"visa\", \"visa-electron\", \"mastercard\"]}" -rdict "{\"cc_t\": \"type of credit card\", \"country\": \"customer's country\", \"email\": \"customer's contact email\"}"
+python main.py -cds "./datasets/dataset_one.csv" -fds "./datasets/dataset_two.csv" -fdict "{\"country\": [\"France\", \"United Kingdom\"]}
+```
+
+### Usecase - complex, employing all customizable options
+```
+python main.py -cds "./datasets/dataset_one.csv" -fds "./datasets/dataset_two.csv" -fdict "{\"country\": [\"France\", \"United States\"], \"cc_t\": [\"visa\", \"visa-electron\", \"mastercard\"]}" -rdict "{\"cc_t\": \"type of credit card\", \"country\": \"customer's country\", \"email\": \"customer's contact email\"}"
 ```
