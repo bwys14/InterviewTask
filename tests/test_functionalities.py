@@ -68,9 +68,19 @@ def test_filter_invalid_column(session: SparkSession, input_schema: list, create
     assert_df_equality(expected_df, filtered_df)
 
 
+def test_empty_filter(session: SparkSession, create_df: DataFrame, logg: Logger) -> None:
+    filtered_df = df_filter(create_df, {}, logg)
+    assert_df_equality(create_df, filtered_df)
+
+
 def test_rename_column(session: SparkSession, input_dataset: list, create_df: DataFrame, logg: Logger) -> None:
     expected_schema = ['no', 'location', 'AD']
     rdict = {'city': 'location', 'director': 'supervisor', 'id': 'no', 'year': 'AD'}
     expected_df = session.createDataFrame(data=input_dataset, schema=expected_schema)
     renamed_df = df_rename_columns(create_df, rdict, logg)
     assert_df_equality(expected_df, renamed_df)
+
+
+def test_empty_rename_input(session: SparkSession, create_df: DataFrame, logg: Logger) -> None:
+    renamed_df = df_rename_columns(create_df, {}, logg)
+    assert_df_equality(create_df, renamed_df)
