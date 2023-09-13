@@ -43,22 +43,22 @@ def input_dataset() -> list:
 
 
 @fixture
-def create_df(session, input_schema, input_dataset) -> DataFrame:
+def create_df(session: SparkSession, input_schema: list, input_dataset: list) -> DataFrame:
     return session.createDataFrame(data=input_dataset, schema=input_schema)
 
 
-def test_filter_existing_column(session: SparkSession, input_schema: list, create_df: DataFrame, logg: Logger):
+def test_filter_existing_column(session: SparkSession, input_schema: list, create_df: DataFrame, logg: Logger) -> None:
     expected_data = [
         (2, 'Gdansk', 1990),
         (10, 'Gdansk', 2007),
         (11, 'Krakow', 2007)]
     expected_df = session.createDataFrame(data=expected_data, schema=input_schema)
-    flt = {'city': ['Gdansk', 'Krakow'], 'year': ['1990', '2007', '2011', '1996']}
+    flt = {'city': ['Gdansk', 'Krakow'], 'year': ['1990', 2007, 2011, '1996']}
     filtered_df = df_filter(create_df, flt, logg)
     assert_df_equality(expected_df, filtered_df)
 
 
-def test_filter_invalid_column(session: SparkSession, input_schema: list, create_df: DataFrame, logg: Logger):
+def test_filter_invalid_column(session: SparkSession, input_schema: list, create_df: DataFrame, logg: Logger) -> None:
     expected_data = [
         (1, 'Warsaw', 1990),
         (2, 'Gdansk', 1990)]
@@ -68,9 +68,10 @@ def test_filter_invalid_column(session: SparkSession, input_schema: list, create
     assert_df_equality(expected_df, filtered_df)
 
 
-def test_rename_column(session: SparkSession, input_dataset: list, create_df: DataFrame, logg: Logger):
+def test_rename_column(session: SparkSession, input_dataset: list, create_df: DataFrame, logg: Logger) -> None:
     expected_schema = ['no', 'location', 'AD']
     rdict = {'city': 'location', 'director': 'supervisor', 'id': 'no', 'year': 'AD'}
     expected_df = session.createDataFrame(data=input_dataset, schema=expected_schema)
     renamed_df = df_rename_columns(expected_df, rdict, logg)
     assert_df_equality(expected_df, renamed_df)
+
