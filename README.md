@@ -29,10 +29,10 @@ The output is saved in client_data directory, in folder corresponding to process
 ## Examples:
 ```
 #default settings
-KP-DataProcessing -cds "./datasets/dataset_one.csv" --fds "./datasets/dataset_two.csv"
+python main.py -cds "./datasets/dataset_one.csv" --fds "./datasets/dataset_two.csv"
 ```
 
 ```
 #more complex case
-KP-DataProcessing -cds "./datasets/dataset_one.csv" -fds "./datasets/dataset_two.csv" -fdict "{\"country\": [\"France\", \"United States\"], \"cc_t\": [\"visa\", \"visa-electron\", \"mastercard\"]}" -rdict "{\"cc_t\": \"type of credit card\", \"country\": \"customer's country\", \"email\": \"customer's contact email\"}"
+python main.py -cds "./datasets/dataset_one.csv" -fds "./datasets/dataset_two.csv" -fdict "{\"country\": [\"France\", \"United States\"], \"cc_t\": [\"visa\", \"visa-electron\", \"mastercard\"]}" -rdict "{\"cc_t\": \"type of credit card\", \"country\": \"customer's country\", \"email\": \"customer's contact email\"}"
 ```
