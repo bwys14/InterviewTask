@@ -27,17 +27,17 @@ The output is saved in client_data directory, in folder corresponding to process
 
 
 ## Examples:
-### Usecase: default settings
+### Usecase - default settings
 ```
 python main.py -cds "./datasets/dataset_one.csv" --fds "./datasets/dataset_two.csv"
 ```
 
-### Usecase: as required in task description (3 parameters: two datasets paths and country filter)
+### Usecase - as required in task description (3 parameters: two datasets paths and country filter)
 ```
 python main.py -cds "./datasets/dataset_one.csv" -fds "./datasets/dataset_two.csv" -fdict "{\"country\": [\"France\", \"United States\"]}
 ```
 
-### Usecase: complex, employing all customizable options
+### Usecase - complex, employing all customizable options
 ```
 python main.py -cds "./datasets/dataset_one.csv" -fds "./datasets/dataset_two.csv" -fdict "{\"country\": [\"France\", \"United States\"], \"cc_t\": [\"visa\", \"visa-electron\", \"mastercard\"]}" -rdict "{\"cc_t\": \"type of credit card\", \"country\": \"customer's country\", \"email\": \"customer's contact email\"}"
 ```
