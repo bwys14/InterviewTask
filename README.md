@@ -1,7 +1,7 @@
 # KP-DataProcessing
 
 ## Description
-This package provides the functionality required by very small company called **KommatiPara** that deals with bitcoin trading. The basic aim of processing steps is to join information from two separate datasets: one containing clients data and the other one containing their financial details. Additionally, personal data is excluded  (except from clients\" e-mails), output is filtered as per chosen criteria and columns are renamed to make the output more user-friendly.
+This package provides the functionality required by very small company called **KommatiPara** that deals with bitcoin trading. The basic aim of processing steps is to join information from two separate datasets: one containing clients data and the other one containing their financial details. Additionally, personal data is excluded  (except from clients\' e-mails), output is filtered as per chosen criteria and columns are renamed to make the output more user-friendly.
 ## Input parameters
 - -cds / --customers_data_path - path to dataset with customer data
 (mandatory, no default value)
