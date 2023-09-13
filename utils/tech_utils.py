@@ -6,7 +6,7 @@ from time import strftime
 
 from pyspark.sql import DataFrame, SparkSession
 
-from config.definitions import ROOT_DIR
+from config import ROOT_DIR
 
 
 def read_df(dataset_path: str, spark_session: SparkSession, log: logging.Logger) -> DataFrame:
