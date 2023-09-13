@@ -19,7 +19,7 @@ def read_df(dataset_path: str, spark_session: SparkSession, log: logging.Logger)
     return spark_session.read.format('csv').option('header', 'true').load(dataset_path)
 
 
-def save_output(input_df: DataFrame, log: logging.Logger):
+def save_output(input_df: DataFrame, log: logging.Logger) -> None:
     """
     This function saves output DataFrame as csv file in client_data directory under project root
     :param input_df: DataFrame, dataframe to be saved as csv
