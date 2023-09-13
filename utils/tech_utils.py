@@ -1,10 +1,10 @@
 from argparse import ArgumentParser, Namespace
 from config.definitions import ROOT_DIR
-from pyspark.sql import DataFrame, SparkSession
-from time import strftime
 import logging
 from logging.handlers import RotatingFileHandler
 from os.path import join as path_join
+from pyspark.sql import DataFrame, SparkSession
+from time import strftime
 
 
 def read_df(dataset_path: str, spark_session: SparkSession, log: logging.Logger) -> DataFrame:
