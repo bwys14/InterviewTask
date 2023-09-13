@@ -33,7 +33,7 @@ In default case, output contains only data for customers from Netherlands and Un
 ## Examples:
 ### Usecase - default settings
 ```
-python main.py -cds "./datasets/dataset_one.csv" --fds "./datasets/dataset_two.csv"
+python main.py -cds "./datasets/dataset_one.csv" -fds "./datasets/dataset_two.csv"
 ```
 
 ### Usecase - options required in task description (accept 3 parameters: two datasets paths and country filter)
