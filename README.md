@@ -13,11 +13,15 @@ This package provides the functionality required by very small company called **
 (optional, default value: '{\"country\": [\"Netherlands\", \"United Kingdom\"]}')
 
 ## Input usage hints
-- Customer and finance datasets must contain original columns as specified below:<br/>
-  **customer_data**\
-  | id | first_name | last_name | email | country |\
-  **finance_data**\
-  | id | btc_a | cc_t | cc_n |<br/>
+- Customer and finance datasets must contain original columns as specified below:<br/><br/>
+  **customer_data**
+  | id | first_name | last_name | email | country |
+  |----|------------|-----------|-------|---------|
+
+  **finance_data**
+  | id | btc_a | cc_t | cc_n | 
+  |----|-------|------|------|
+
   If that condition is satisfied, application can handle the case in which datasets contain additional columns.
 - Json string used for columns renaming step (-rdict) can include columns from both datasets as it\'s applied to already joined data.
 - Json string used for filtering (-fdict) can include filter criteria for any column from any dataset as it\'s also applied to already joined data.
@@ -26,8 +30,10 @@ This package provides the functionality required by very small company called **
 The output csv file is saved in client_data directory, in folder named output<execution_timesamp>.\
 Output file contains joined customer and finance data, without some PII data (first_name, last_name, cc_n [i.e. credit card number]).\
 The data is filtered as specified by -fdict parameter and columns are named as specified by -rdict parameter.\
-In default case, output contains only data for customers from Netherlands and United Kingdom and the output columns are named as per below:\
+In default case, output contains only data for customers from Netherlands and United Kingdom and the output columns are named as per below:
 | client_identifier | email | country | bitcoin_address | credit_card_type |
+|-------------------|-------|---------|-----------------|------------------|
+--------------------------------------------------------
 
 
 ## Examples:
