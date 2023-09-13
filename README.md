@@ -37,17 +37,20 @@ In default case, output contains only data for customers from Netherlands and Un
 
 
 ## Examples:
-### Usecase - default settings
+### Usecase 1.
+Use default settings:
 ```
 python main.py -cds "./datasets/dataset_one.csv" -fds "./datasets/dataset_two.csv"
 ```
 
-### Usecase - options required in task description (accept 3 parameters: two datasets paths and country filter)
+### Usecase 2.
+Use options required in task description (accept 3 parameters: two datasets paths and country filter):
 ```
 python main.py -cds "./datasets/dataset_one.csv" -fds "./datasets/dataset_two.csv" -fdict "{\"country\": [\"France\", \"United Kingdom\"]}"
 ```
 
-### Usecase - complex, employing all customizable options
+### Usecase 3.
+Complex usage, employing all customizable options:
 ```
 python main.py -cds "./datasets/dataset_one.csv" -fds "./datasets/dataset_two.csv" -fdict "{\"country\": [\"France\", \"United States\"], \"cc_t\": [\"visa\", \"visa-electron\", \"mastercard\"]}" -rdict "{\"cc_t\": \"type of credit card\", \"country\": \"customer's country\", \"email\": \"customer's contact email\"}"
 ```
