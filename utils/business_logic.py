@@ -12,12 +12,12 @@ def df_filter(input_df: DataFrame, filter_dict: dict, log: Logger) -> DataFrame:
     :return: DataFrame, filtered as per information in dict
     """
     log.info(f'Start dataset filtering')
-    for fcol, fval in filter_dict.items():
-        if fcol not in input_df.columns:
-            log.warning(f'No column named {fcol} was detected')
+    for f_col, f_val in filter_dict.items():
+        if f_col not in input_df.columns:
+            log.warning(f'No column named {f_col} was detected')
         else:
-            log.info(f'Filter {fcol} column using {fval} values')
-            input_df = input_df.filter(col(fcol).isin(fval))
+            log.info(f'Filter {f_col} column using {f_val} values')
+            input_df = input_df.filter(col(f_col).isin(f_val))
     return input_df
 
 
@@ -34,5 +34,5 @@ def df_rename_columns(input_df: DataFrame, columns_aliases_dict: dict, log: Logg
             log.warning(f'No column named {old_name} was detected')
         else:
             log.info(f'Renaming column {old_name} to {new_name}')
-            input_df.withColumnRenamed(old_name, new_name)
+            input_df = input_df.withColumnRenamed(old_name, new_name)
     return input_df
