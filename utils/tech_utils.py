@@ -8,24 +8,24 @@ from pyspark.sql import DataFrame, SparkSession
 
 from config import ROOT_DIR
 
+log = logging.getLogger('log_steps')
 
-def read_df(dataset_path: str, spark_session: SparkSession, log: logging.Logger) -> DataFrame:
+
+def read_df(dataset_path: str, spark_session: SparkSession) -> DataFrame:
     """
     This function reads csv dataset from provided path using provided spark_session instance
     :param dataset_path: str, the path from which csv should be read
     :param spark_session: SparkSession, determines spark session to use for reading the data
-    :param log: Logger, provide Logger object to be used for steps logging
     :return: DataFrame, containing data included in csv stated as source
     """
     log.info(f'Reading dataset from path {dataset_path}')
     return spark_session.read.format('csv').option('header', 'true').load(dataset_path)
 
 
-def save_output(input_df: DataFrame, log: logging.Logger) -> None:
+def save_output(input_df: DataFrame) -> None:
     """
     This function saves output DataFrame as csv file in client_data directory under project root
     :param input_df: DataFrame, dataframe to be saved as csv
-    :param log: Logger, provide Logger object to be used for steps logging
     """
     log.info('Creating output path')
     output_path = path_join(ROOT_DIR, 'client_data', 'output' + strftime("%Y%m%d_%H%M%S"))
@@ -33,10 +33,9 @@ def save_output(input_df: DataFrame, log: logging.Logger) -> None:
     input_df.write.option('header', 'true').format('csv').mode('overwrite').save(output_path)
 
 
-def parse_args(log: logging.Logger) -> Namespace:
+def parse_args() -> Namespace:
     """
     The function parses the input arguments
-    log.info(f'Creating output path')
     :return: Namespace, argparse object with parsed arguments
     """
 
@@ -66,9 +65,8 @@ def init_logg(log_path: str = 'logs/applog.log', log_size: int = 3000,
     :param log_time_format: str, the format of timestamp in log entry
     :return: Logger, object used for logging the processing steps
     """
-    logger = logging.getLogger('log_steps')
 
-    logger.setLevel(logging.INFO)
+    log.setLevel(logging.INFO)
 
     handler = RotatingFileHandler(log_path, maxBytes=log_size, backupCount=10)
     handler.setLevel(logging.INFO)
@@ -77,6 +75,6 @@ def init_logg(log_path: str = 'logs/applog.log', log_size: int = 3000,
 
     handler.setFormatter(formatter)
 
-    logger.addHandler(handler)
+    log.addHandler(handler)
 
-    return logger
+    return log
