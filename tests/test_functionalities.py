@@ -1,11 +1,7 @@
-from logging import getLogger
-
 from chispa.dataframe_comparer import assert_df_equality
 from pyspark.sql import DataFrame, SparkSession
 
 from src.utils import df_filter, df_rename_columns
-
-log = getLogger('log_steps')
 
 
 def test_filter_existing_column(session: SparkSession, input_schema: list, create_df: DataFrame) -> None:
