@@ -57,7 +57,7 @@ named as per below:
 Use default settings:
 
 ```
-python main.py -cds "./datasets/dataset_one.csv" -fds "./datasets/dataset_two.csv"
+python -m src.main -cds "./datasets/dataset_one.csv" -fds "./datasets/dataset_two.csv"
 ```
 
 ### Usecase 2.
@@ -65,7 +65,7 @@ python main.py -cds "./datasets/dataset_one.csv" -fds "./datasets/dataset_two.cs
 Use options required in task description (accept 3 parameters: two datasets paths and country filter):
 
 ```
-python main.py -cds "./datasets/dataset_one.csv" -fds "./datasets/dataset_two.csv" -fdict "{\"country\": [\"France\", \"United Kingdom\"]}"
+python -m src.main -cds "./datasets/dataset_one.csv" -fds "./datasets/dataset_two.csv" -fdict "{\"country\": [\"France\", \"United Kingdom\"]}"
 ```
 
 ### Usecase 3.
@@ -73,5 +73,5 @@ python main.py -cds "./datasets/dataset_one.csv" -fds "./datasets/dataset_two.cs
 Complex usage, employing all customizable options:
 
 ```
-python main.py -cds "./datasets/dataset_one.csv" -fds "./datasets/dataset_two.csv" -fdict "{\"country\": [\"France\", \"United States\"], \"cc_t\": [\"visa\", \"visa-electron\", \"mastercard\"]}" -rdict "{\"cc_t\": \"type of credit card\", \"country\": \"customer's country\", \"email\": \"customer's contact email\"}"
+python -m src.main -cds "./datasets/dataset_one.csv" -fds "./datasets/dataset_two.csv" -fdict "{\"country\": [\"France\", \"United States\"], \"cc_t\": [\"visa\", \"visa-electron\", \"mastercard\"]}" -rdict "{\"cc_t\": \"type of credit card\", \"country\": \"customer's country\", \"email\": \"customer's contact email\"}"
 ```
