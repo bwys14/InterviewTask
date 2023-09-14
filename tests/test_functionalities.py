@@ -3,7 +3,7 @@ from logging import getLogger
 from chispa.dataframe_comparer import assert_df_equality
 from pyspark.sql import DataFrame, SparkSession
 
-from utils.business_logic import df_filter, df_rename_columns
+from src.utils import df_filter, df_rename_columns
 
 log = getLogger('log_steps')
 
