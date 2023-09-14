@@ -1,6 +1,3 @@
-from logging import getLogger, Logger
-
-from chispa.dataframe_comparer import assert_df_equality
 from pyspark.sql import DataFrame, SparkSession
 from pytest import fixture
 
@@ -9,11 +6,6 @@ from pytest import fixture
 def session() -> SparkSession:
     test_session: SparkSession = SparkSession.builder.master('local').appName('RunTests').getOrCreate()
     return test_session
-
-
-@fixture
-def logg() -> Logger:
-    return getLogger('log_steps')
 
 
 @fixture
